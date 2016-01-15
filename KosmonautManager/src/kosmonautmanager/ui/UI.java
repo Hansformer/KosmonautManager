@@ -24,26 +24,42 @@ public class UI {
         System.out.print("                              ");
         this.cmsrName = scanner.next();
 
-        game = new Game(cmsrName);
-        game.newGame();
-
         printCommands(0);
+        mainMenu();
 
     }
 
     public void mainMenu() {
 
         while (true) {
-            System.out.print(">");
+
             String command = scanner.nextLine();
 
             if (command.equalsIgnoreCase("quit")) {
                 break;
             } else if (command.equalsIgnoreCase("help")) {
                 printCommands(0);
-            } else if (command.equalsIgnoreCase("crew")) {
-                game.printCosmonauts(5, false);
+            } else if (command.equalsIgnoreCase("game")) {
+                game = new Game(cmsrName);
+                game.newGame();
+                gameMenu();
             }
+            System.out.print(">");
+        }
+    }
+
+    public void gameMenu() {
+        boolean quit = false;
+
+        while (!quit) {
+            System.out.print(">");
+            String command = scanner.nextLine();
+            
+            if (command.equalsIgnoreCase("quit")) {
+                quit = true;
+                break;
+            }
+            
         }
     }
 
@@ -52,7 +68,7 @@ public class UI {
         if (menu == 0) {
             System.out.println("Available commands:");
             System.out.println("------------------");
-            System.out.println("Crew: Prints list of available cosmonauts");
+            System.out.println("Game: Begins a new game");
             System.out.println("Help: Prints list of commands");
             System.out.println("Quit: Closes the game");
         }
